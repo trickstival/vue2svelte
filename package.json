@@ -1,0 +1,25 @@
+{
+  "name": "vue2svelte",
+  "version": "0.0.1",
+  "description": "A Vue SFC to Svelte Transpiler",
+  "main": "src/index.js",
+  "author": "trickstival",
+  "license": "MIT",
+  "scripts": {
+    "dev": "jest --watchAll",
+    "build": "webpack --mode=production"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  },
+  "dependencies": {
+    "svelte": "^3.6.2",
+    "vue": "^2.6.10"
+  }
+}
