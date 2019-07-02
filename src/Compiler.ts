@@ -1,6 +1,6 @@
 import { ComponentOptions } from 'vue/types/options'
 import Vue from 'vue'
-import SvelteComponent, { SvelteProp } from './SvelteComponent'
+import SvelteComponent, { SvelteProp, SvelteData } from './SvelteComponent'
 
 export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     private vm: T
@@ -11,6 +11,8 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     }
 
     compile (): string {
+        this.mapProps()
+        this.mapData()
         return this.svelteComponent.getCode()
     }
 
@@ -22,6 +24,21 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
                 default: vueProp.default
             }
             this.svelteComponent.addProp(svelteProp)
+        }
+    }
+
+    mapData () {
+        let { data } = this.vm
+        data = typeof data === 'function' 
+            ? data() 
+            : data
+
+        for (const [vueDataKey, vueData = {}] of Object.entries(data)) {
+            const svelteData: SvelteData = {
+                name: vueDataKey,
+                initialValue: vueData
+            }
+            this.svelteComponent.addData(svelteData)
         }
     }
 }
