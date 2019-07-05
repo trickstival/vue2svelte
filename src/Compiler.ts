@@ -13,6 +13,7 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     compile (): string {
         this.mapProps()
         this.mapData()
+        this.svelteComponent.parseRenderFunction(this.vm.render)
         return this.svelteComponent.getCode()
     }
 
