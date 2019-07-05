@@ -4,6 +4,9 @@
   "description": "A Vue SFC to Svelte Transpiler",
   "main": "dist/index.js",
   "author": "trickstival",
+  "repository": {
+    "url": "https://github.com/trickstival/vue2svelte"
+  },
   "license": "MIT",
   "files": [
     "dist"
