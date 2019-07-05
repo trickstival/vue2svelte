@@ -28,7 +28,7 @@ For instance:
 
 Outputs:
 
-```js
+```svelte
 
             <script>
                 // props
