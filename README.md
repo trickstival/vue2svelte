@@ -2,6 +2,14 @@
 
 Still under development and there's still a long way to go :o
 
+## Install
+
+```bash
+npm i vue2svelte
+# or
+yarn add vue2svelte
+```
+
 ## Main Goal
 
 Get a Vue options object and convert it into a svelte component
