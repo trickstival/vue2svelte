@@ -1,11 +1,13 @@
 {
   "name": "vue2svelte",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Vue SFC to Svelte Transpiler",
   "main": "dist/index.js",
   "author": "trickstival",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "jest --watchAll",
     "build": "webpack --mode=production"
