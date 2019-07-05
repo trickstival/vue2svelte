@@ -29,5 +29,12 @@
   "dependencies": {
     "svelte": "^3.6.2",
     "vue": "^2.6.10"
-  }
+  },
+  "keywords": [
+    "vue",
+    "svelte",
+    "compiler",
+    "transpiler",
+    "transform"
+  ]
 }
