@@ -1,7 +1,7 @@
-import { ComponentOptions } from 'vue/types/options'
 import Vue from 'vue'
-import SvelteComponent, { SvelteProp, SvelteData } from './SvelteComponent'
-import TemplateCompiler from './TemplateCompiler';
+import { ComponentOptions } from 'vue/types/options'
+import SvelteComponent, { SvelteData, SvelteProp } from './SvelteComponent'
+import TemplateCompiler from './TemplateCompiler'
 
 export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     private vm: T
@@ -11,34 +11,34 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
         this.svelteComponent = new SvelteComponent()
     }
 
-    compile (): string {
+    public compile (): string {
         this.mapProps()
         this.mapData()
         this.svelteComponent.setTemplate(new TemplateCompiler(this.vm).compile())
         return this.svelteComponent.getCode()
     }
 
-    mapProps () {
+    public mapProps () {
         const { props } = this.vm
         for (const [vuePropKey, vueProp = {}] of Object.entries(props)) {
             const svelteProp: SvelteProp = {
+                default: vueProp.default,
                 name: vuePropKey,
-                default: vueProp.default
             }
             this.svelteComponent.addProp(svelteProp)
         }
     }
 
-    mapData () {
+    public mapData () {
         let { data } = this.vm
-        data = typeof data === 'function' 
-            ? data() 
+        data = typeof data === 'function'
+            ? data()
             : data
 
         for (const [vueDataKey, vueData = {}] of Object.entries(data)) {
             const svelteData: SvelteData = {
+                initialValue: vueData,
                 name: vueDataKey,
-                initialValue: vueData
             }
             this.svelteComponent.addData(svelteData)
         }

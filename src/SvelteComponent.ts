@@ -1,14 +1,14 @@
 // This is an intermediary entity between vue and svelte
 
 export interface SvelteProp {
-    name: String
+    name: string
     default: any
 }
 
 export interface SvelteData {
-    name: String,
+    name: string,
     initialValue: any,
-    
+
 }
 
 export default class SvelteComponent {
@@ -20,22 +20,22 @@ export default class SvelteComponent {
         this.props = []
         this.data = []
     }
-    setTemplate (template: string) {
+    public setTemplate (template: string) {
         this.template = template
     }
-    addProp (prop: SvelteProp) {
+    public addProp (prop: SvelteProp) {
         this.props.push(prop)
     }
-    addData (data: SvelteData) {
+    public addData (data: SvelteData) {
         this.data.push(data)
     }
-    getCode () {
+    public getCode () {
         const propsCode = this.props
-            .map(prop => `export let ${prop.name} = '${prop.default}';`)
+            .map((prop) => `export let ${prop.name} = '${prop.default}';`)
             .join('\n')
 
         const dataCode = this.data
-            .map(data => `let ${data.name} = '${data.initialValue}';`)
+            .map((data) => `let ${data.name} = '${data.initialValue}';`)
             .join('\n')
 
         return `

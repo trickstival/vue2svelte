@@ -12,6 +12,8 @@
     "dist"
   ],
   "scripts": {
+    "test:unit": "jest",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "dev": "jest --watchAll",
     "build": "webpack --mode=production"
   },
@@ -21,6 +23,7 @@
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
+    "tslint": "^5.18.0",
     "typescript": "^3.5.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.35.2",

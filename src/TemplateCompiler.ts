@@ -1,17 +1,17 @@
+import { ComponentOptions } from 'vue'
 import * as Compiler from 'vue-template-compiler'
 import { Vue } from 'vue/types/vue'
-import { ComponentOptions } from 'vue';
 
-class FromTypes {
-    static isASTElement (T: Compiler.ASTNode): T is Compiler.ASTElement {
+const FromTypes = {
+    isASTElement (T: Compiler.ASTNode): T is Compiler.ASTElement {
         return T.type === 1
-    }
-    static isASTExpression (T: Compiler.ASTNode) : T is Compiler.ASTExpression {
+    },
+    isASTExpression (T: Compiler.ASTNode): T is Compiler.ASTExpression {
         return T.type === 2
-    }
-    static isASTText (T: Compiler.ASTNode) : T is Compiler.ASTText {
+    },
+    isASTText (T: Compiler.ASTNode): T is Compiler.ASTText {
         return T.type === 3
-    }
+    },
 }
 
 export default class TemplateCompiler {
@@ -22,12 +22,22 @@ export default class TemplateCompiler {
         // @ts-ignore
         this.compiledVueTemplate = Compiler.compile(this.rawTemplate, options)
     }
+    public compile (ast = this.compiledVueTemplate.ast) {
+        if (ast.static) {
+            return ast.text
+        }
+        return `
+            <${ast.tag}>
+                ${ast.children.map((astChild) => this.compileNode(astChild)).join('\n')}
+            </${ast.tag}>
+        `
+    }
     private compileNode (node: Compiler.ASTNode) {
         if (FromTypes.isASTText(node)) {
             return node.text
         }
         if (FromTypes.isASTExpression(node)) {
-            return node.tokens.map(token => {
+            return node.tokens.map((token) => {
                 if (typeof token === 'string') {
                     return token
                 }
@@ -37,7 +47,7 @@ export default class TemplateCompiler {
         if (FromTypes.isASTElement(node)) {
             // console.log(node)
             const compileChildren = (): string => node.children
-                .map(child => this.compileNode(child))
+                .map((child) => this.compileNode(child))
                 .join('\n')
 
             return `
@@ -46,15 +56,5 @@ export default class TemplateCompiler {
                 </${node.tag}>
             `
         }
-    }
-    compile (ast = this.compiledVueTemplate.ast) {
-        if (ast.static) {
-            return ast.text
-        }
-        return `
-            <${ast.tag}>
-                ${ast.children.map(astChild => this.compileNode(astChild)).join('\n')}
-            </${ast.tag}>
-        `
     }
 }
