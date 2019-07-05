@@ -16,7 +16,7 @@ Get a Vue options object and convert it into a svelte component
 
 Currently it can render simple pure components with props and data.
 
-For instance:
+This vue component for instance:
 
 ```js
 {
@@ -34,7 +34,7 @@ For instance:
 }
 ```
 
-Outputs:
+Outputs this svelte code (formatting is still broken):
 
 ```svelte
 
@@ -57,3 +57,5 @@ Outputs:
 
 
 ```
+
+This project is a little bit complex, so if you can help please do it!
