@@ -1,6 +1,6 @@
 {
   "name": "vue2svelte",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A Vue SFC to Svelte Transpiler",
   "main": "dist/index.js",
   "author": "trickstival",
