@@ -15,6 +15,7 @@
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.2",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },

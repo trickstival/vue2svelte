@@ -1,6 +1,7 @@
 import { ComponentOptions } from 'vue/types/options'
 import Vue from 'vue'
 import SvelteComponent, { SvelteProp, SvelteData } from './SvelteComponent'
+import TemplateCompiler from './TemplateCompiler';
 
 export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     private vm: T
@@ -13,7 +14,7 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     compile (): string {
         this.mapProps()
         this.mapData()
-        this.svelteComponent.parseRenderFunction(this.vm.render)
+        this.svelteComponent.setTemplate(new TemplateCompiler(this.vm).compile())
         return this.svelteComponent.getCode()
     }
 

@@ -1,16 +1,11 @@
-import { ComponentCompiler } from '../src/index'
 import Vue, { ComponentOptions, CreateElement } from 'vue';
+import TemplateCompiler from '../src/TemplateCompiler';
+import { ComponentCompiler } from '../src/Compiler';
 
 describe('The Compiler', () => {
     it('creates a compiler', () => {
         const myComponent: ComponentOptions<Vue> = {
-            render (h) {
-                return h('div', {
-                    class: 'some class'
-                }, [
-                    h('span', 'hey')
-                ])
-            },
+            template: `<h1><span>eai + {{ heyProp }}</span> galera {{ heyProp }} {{ hey }}</h1>`,
             props: {
                 heyProp: {
                     default: 'Im a prop'
@@ -22,8 +17,13 @@ describe('The Compiler', () => {
                 }
             }
         }
+
         const compiler = new ComponentCompiler(myComponent)
-        const svelteCode = compiler.compile()
-        console.log(svelteCode)
+        const result = compiler.compile()
+        console.log(result)
+
+        // const compiler = new ComponentCompiler(myComponent)
+        // const svelteCode = compiler.compile()
+        // console.log(svelteCode)
     })
 })
