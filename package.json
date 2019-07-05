@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "author": "trickstival",
   "license": "MIT",
+  "files": ["dist"],
   "scripts": {
     "dev": "jest --watchAll",
     "build": "webpack --mode=production"
