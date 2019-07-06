@@ -32,6 +32,20 @@ export default class TemplateCompiler {
             </${ast.tag}>
         `
     }
+    private compileAttrs (node: Compiler.ASTElement): string {
+        let attrs = ''
+        return attrs
+    }
+    private compileSurroundings (node: Compiler.ASTElement, template: string) {
+        if (node.if) {
+            return `
+                {#if ${node.if}}
+                    ${template}
+                {/if}
+            `
+        }
+        return template
+    }
     private compileNode (node: Compiler.ASTNode) {
         if (FromTypes.isASTText(node)) {
             return node.text
@@ -45,16 +59,19 @@ export default class TemplateCompiler {
             }).join('')
         }
         if (FromTypes.isASTElement(node)) {
-            // console.log(node)
             const compileChildren = (): string => node.children
                 .map((child) => this.compileNode(child))
                 .join('\n')
 
-            return `
-                <${node.tag}>
+            let currentTemplate = `
+                <${node.tag} ${this.compileAttrs(node)}>
                     ${ node.children ? compileChildren() : '' }
                 </${node.tag}>
             `
+
+            currentTemplate = this.compileSurroundings(node, currentTemplate)
+
+            return currentTemplate
         }
     }
 }

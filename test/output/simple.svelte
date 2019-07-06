@@ -9,9 +9,13 @@
             
             <h1>
                 
-                <span>
+                {#if heyProp === 'ai'}
+                    
+                <span >
                     eai {heyProp}
                 </span>
+            
+                {/if}
             
  galera {heyProp} {hey}
             </h1>

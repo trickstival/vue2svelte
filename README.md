@@ -14,6 +14,25 @@ yarn add vue2svelte
 
 Get a Vue options object and convert it into a svelte component
 
+Compiler Roadmap:
+
+- [x] Simple HTML elements rendering
+- [x] Simple props binding
+- [x] Simple data properties binding
+- [x] v-if statements
+- [ ] v-else and v-else-if statements
+- [ ] v-for statements
+- [ ] v-once statements
+- [ ] Methods
+- [ ] Computed properties
+- [ ] Mixins
+- [ ] Lifecycle hooks
+- [ ] Calls to $nextTick
+- [ ] Filters
+- [ ] Calls to $options
+
+...
+
 Currently it can render simple pure components with props and data.
 
 This vue component for instance:
