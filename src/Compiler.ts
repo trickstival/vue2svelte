@@ -19,7 +19,7 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     }
 
     public mapProps () {
-        const { props } = this.vm
+        const props = this.vm.props || {}
         for (const [vuePropKey, vueProp = {}] of Object.entries(props)) {
             const svelteProp: SvelteProp = {
                 default: vueProp.default,
@@ -30,7 +30,7 @@ export class ComponentCompiler<T extends ComponentOptions<Vue>> {
     }
 
     public mapData () {
-        let { data } = this.vm
+        let data = this.vm.data || {}
         data = typeof data === 'function'
             ? data()
             : data

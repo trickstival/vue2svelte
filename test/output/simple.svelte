@@ -12,12 +12,12 @@
                 {#if heyProp === 'ai'}
                     
                 <span >
-                    eai {heyProp}
+                    sup {heyProp}
                 </span>
             
                 {/if}
             
- galera {heyProp} {hey}
+ plp {heyProp} {hey}
             </h1>
         
         

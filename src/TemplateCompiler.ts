@@ -23,9 +23,6 @@ export default class TemplateCompiler {
         this.compiledVueTemplate = Compiler.compile(this.rawTemplate, options)
     }
     public compile (ast = this.compiledVueTemplate.ast) {
-        if (ast.static) {
-            return ast.text
-        }
         return `
             <${ast.tag}>
                 ${ast.children.map((astChild) => this.compileNode(astChild)).join('\n')}
