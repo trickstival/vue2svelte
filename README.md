@@ -23,6 +23,8 @@ Compiler Roadmap:
 - [ ] v-else and v-else-if statements
 - [ ] v-for statements
 - [ ] v-once statements
+- [ ] v-model support
+- [ ] v-bind="obj" support
 - [ ] Methods
 - [ ] Computed properties
 - [ ] Mixins
