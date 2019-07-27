@@ -1,5 +1,7 @@
 # Vue2Svelte
 
+[Demo](https://blissful-goldstine-5db493.netlify.com)
+
 Still under development and there's still a long way to go :o
 
 ## Install
