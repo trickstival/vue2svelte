@@ -1,6 +1,7 @@
 # Vue2Svelte
 
 [Demo](https://blissful-goldstine-5db493.netlify.com)
+![Demo Image](https://github.com/trickstival/vue2svelte/blob/master/demo/src/assets/demo-print.png?raw=true)
 
 Still under development and there's still a long way to go :o
 
