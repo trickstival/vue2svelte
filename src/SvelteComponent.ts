@@ -38,15 +38,6 @@ export default class SvelteComponent {
             .map((data) => `let ${data.name} = '${data.initialValue}';`)
             .join('\n')
 
-        return `
-            <script>
-                // props
-                ${propsCode}
-
-                // data
-                ${dataCode}
-            </script>
-            ${this.template}
-        `
+        return `<script>${propsCode}${dataCode}</script>${this.template}`
     }
 }

@@ -5,13 +5,13 @@
       <div>
         Template
         <editor
-          v-model="template"
+          v-model="preset.template"
           language="html"
           class="editor"
         />
         Script
         <editor
-          v-model="script"
+          v-model="preset.script"
           language="javascript"
           class="editor"
         />
@@ -32,6 +32,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Editor from '@/components/Editor.vue'
+import presets from '../presets'
 import Compiler from '../../../src'
 
 @Component({
@@ -40,26 +41,12 @@ import Compiler from '../../../src'
   }
 })
 export default class Home extends Vue {
-  private template: String = `<div>
-  <span v-if="prop1 === 'sup'">never gonna be shown</span>
-</div>`
-  private script: String = `{
-  props: {
-    prop1: {
-      default: 'yeeah Im a prop'
-    }
-  },
-  data() {
-    return {
-      data1: 'Just normal data'
-    }
-  }
-}`
+  private preset = presets.default
   get svelteCode () {
-    const jsonString = `(${this.script})`.replace(/'/g, '"')
+    const jsonString = `(${this.preset.script})`.replace(/'/g, '"')
     // eslint-disable
     const component = eval(jsonString)
-    component.template = this.template
+    component.template = this.preset.template
 
     const compiler = new Compiler(component)
 

@@ -23,11 +23,8 @@ export default class TemplateCompiler {
         this.compiledVueTemplate = Compiler.compile(this.rawTemplate, options)
     }
     public compile (ast = this.compiledVueTemplate.ast) {
-        return `
-            <${ast.tag}>
-                ${ast.children.map((astChild) => this.compileNode(astChild)).join('\n')}
-            </${ast.tag}>
-        `
+        const children = ast.children.map((astChild) => this.compileNode(astChild)).join('\n')
+        return `<${ast.tag}>${children}</${ast.tag}>`
     }
     private compileAttrs (node: Compiler.ASTElement): string {
         let attrs = ''
@@ -35,11 +32,7 @@ export default class TemplateCompiler {
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
         if (node.if) {
-            return `
-                {#if ${node.if}}
-                    ${template}
-                {/if}
-            `
+            return `{#if ${node.if}}${template}{/if}`
         }
         return template
     }
@@ -60,11 +53,12 @@ export default class TemplateCompiler {
                 .map((child) => this.compileNode(child))
                 .join('\n')
 
-            let currentTemplate = `
-                <${node.tag} ${this.compileAttrs(node)}>
-                    ${ node.children ? compileChildren() : '' }
-                </${node.tag}>
-            `
+            const attrs = this.compileAttrs(node)
+
+            const trailingAttrs = attrs ? ' ' + attrs : ''
+            const childrenOrEmpty = node.children ? compileChildren() : ''
+
+            let currentTemplate = `<${node.tag + trailingAttrs}>${childrenOrEmpty}</${node.tag}>`
 
             currentTemplate = this.compileSurroundings(node, currentTemplate)
 
