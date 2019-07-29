@@ -20,7 +20,7 @@
         <h2>
           Svelte Result
         </h2>
-        <pre>
+        <pre class="result-container">
           {{ svelteCode }}
         </pre>
       </div>
@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Editor from '@/components/Editor.vue'
-import presets from '../presets'
+import presets from '../utils/presets'
 import Compiler from '../../../src'
 
 @Component({
@@ -55,6 +55,9 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+pre.result-container {
+  white-space: pre-wrap;
+}
 .home {
   height: 80%;
   margin: 0 30px;
