@@ -11,17 +11,17 @@ const presets: Record<string, Preset> = {
     <div v-else>just v-else</div>
 </div>`,
     script: `{
-      props: {
-        prop1: {
-          default: 'yeeah Im a prop'
-        }
-      },
-      data() {
-        return {
-          data1: 'Just normal data'
-        }
-      }
-    }`
+  props: {
+    prop1: {
+      default: 'yeeah Im a prop'
+    }
+  },
+  data() {
+    return {
+      data1: 'Just normal data'
+    }
+  }
+}`
   },
   default2: {
     template: `<div>
