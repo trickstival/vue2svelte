@@ -27,13 +27,13 @@ export default class TemplateCompiler {
         return `<${ast.tag}>${children}</${ast.tag}>`
     }
     private compileAttrs (node: Compiler.ASTElement): string {
-        let attrs = ''
+        const attrs = ''
         return attrs
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
         if (node.if) {
             const [, ...elses] = node.ifConditions
-            const elsesTemplate = elses.map(elseItem => {
+            const elsesTemplate = elses.map((elseItem) => {
                 const block = this.compileNode(elseItem.block)
                 if (elseItem.exp) {
                     return `{:else if ${elseItem.exp}} ${block}`
