@@ -27,6 +27,7 @@ export default class TemplateCompiler {
         return `<${ast.tag}>${children}</${ast.tag}>`
     }
     private compileAttrs (node: Compiler.ASTElement): string {
+        // TODO: bind attrs
         const attrs = ''
         return attrs
     }
