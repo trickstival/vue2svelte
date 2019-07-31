@@ -20,10 +20,10 @@ Get a Vue options object and convert it into a svelte component
 Compiler Roadmap:
 
 - [x] Simple HTML elements rendering
-- [x] Simple props binding
-- [x] Simple data properties binding
+- [x] Default props values
+- [x] Simple properties declaration
 - [x] v-if statements
-- [ ] v-else and v-else-if statements
+- [x] v-else and v-else-if statements
 - [ ] v-for statements
 - [ ] v-once statements
 - [ ] v-model support
