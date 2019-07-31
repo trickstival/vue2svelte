@@ -58,28 +58,17 @@ This vue component for instance:
 }
 ```
 
-Outputs this svelte code (formatting is still broken):
+Outputs this svelte code:
 
 ```svelte
-
-            <script>
-                // props
-                export let heyProp = 'Im a prop';
-
-                // data
-                let hey = 'Im hey data';
-            </script>
-
-            <h1>
-
-                <span>
-                    super {heyProp}
-                </span>
-
- static {heyProp} {hey}
-            </h1>
-
-
+<script>
+    export let heyProp = 'Im a prop';
+    let hey = 'Im hey data';
+</script>
+<h1>
+    <span>super {heyProp}</span>
+    static {heyProp} {hey}
+</h1>
 ```
 
 This project is a little bit complex, so if you can help please do it!
