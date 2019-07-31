@@ -34,14 +34,35 @@ import { Component, Vue } from 'vue-property-decorator'
 import Editor from '@/components/Editor.vue'
 import presets from '../utils/presets'
 import Compiler from '../../../src'
+// import { throttle } from 'lodash-es'
+import prettier from 'prettier/standalone'
 
 @Component({
   components: {
     Editor
   }
+  // TODO: find a way to run prettier with svelte in the browser
+  // watch: {
+  //   svelteCode: {
+  //     immediate: true,
+  //     handler: throttle(function (code) {
+  //       fetch(`${process.env.VUE_APP_PROXIED_PRETTIER_SERVICE}/prettify`, {
+  //         headers: {
+  //           'Accept': 'application/json',
+  //           'Content-Type': 'application/json'
+  //         },
+  //         method: 'POST',
+  //         body: JSON.stringify({ code }),
+
+  //       }).then(response => response.json())
+  //         .then(data => (this.formattedSvelteCode = data.formattedCode))
+  //     }, 1000)
+  //   }
+  // }
 })
 export default class Home extends Vue {
   private preset = presets.default
+  // private formattedSvelteCode = ''
   get svelteCode () {
     const jsonString = `(${this.preset.script})`.replace(/'/g, '"')
     // eslint-disable

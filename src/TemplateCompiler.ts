@@ -32,7 +32,15 @@ export default class TemplateCompiler {
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
         if (node.if) {
-            return `{#if ${node.if}}${template}{/if}`
+            const [, ...elses] = node.ifConditions
+            const elsesTemplate = elses.map(elseItem => {
+                const block = this.compileNode(elseItem.block)
+                if (elseItem.exp) {
+                    return `{:else if ${elseItem.exp}} ${block}`
+                }
+                return `{:else} ${block}`
+            }).join('')
+            return `{#if ${node.if}}${template}${elsesTemplate}{/if}`
         }
         return template
     }
