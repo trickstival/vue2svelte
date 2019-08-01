@@ -39,7 +39,7 @@ Compiler Roadmap:
 
 ...
 
-Currently it can render simple pure components with props and data.
+Currently it can compile simple pure components with props and data.
 
 This vue component for instance:
 
