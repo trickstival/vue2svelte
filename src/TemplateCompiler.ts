@@ -27,9 +27,15 @@ export default class TemplateCompiler {
         return `<${ast.tag}>${children}</${ast.tag}>`
     }
     private compileAttrs (node: Compiler.ASTElement): string {
-        // TODO: bind attrs
-        const attrs = ''
-        return attrs
+        return node.attrs.map(attr => {
+            // "dynamic" property is not mapped by vue-template-compiler declaration files.
+            // maybe opening an issue is the right thing to do, but I think it's moving to ts.
+            // @ts-ignore
+            if (attr.dynamic !== undefined) {
+                return `${attr.name}={${attr.value}}`
+            }
+            return `${attr.name}=${attr.value}`
+        }).join(' ')
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
         if (node.if) {
