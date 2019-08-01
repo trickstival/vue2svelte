@@ -4,7 +4,24 @@ interface Preset {
 }
 
 const presets: Record<string, Preset> = {
-  default3: {
+  default: {
+    template: `<div>
+    <span title="static" v-bind:anything="prop1"></span>
+</div>`,
+    script: `{
+  props: {
+    prop1: {
+      default: 'yeeah Im a prop'
+    }
+  },
+  data() {
+    return {
+      data1: 'Just normal data'
+    }
+  }
+}`
+  },
+  'v-if and v-else': {
     template: `<div>
     <span v-if="prop1 === 'sup'">never gonna be shown</span>
     <div v-else-if="data1">data1 shows</div>
@@ -23,39 +40,17 @@ const presets: Record<string, Preset> = {
   }
 }`
   },
-  default2: {
+  'print data': {
     template: `<div>
-    <span v-if="prop1 === 'sup'">never gonna be shown</span>
+    <span>Printing prop: {{ prop1 }} </span>
 </div>`,
     script: `{
       props: {
         prop1: {
           default: 'yeeah Im a prop'
         }
-      },
-      data() {
-        return {
-          data1: 'Just normal data'
-        }
       }
     }`
-  },
-  default: {
-    template: `<div>
-    <span title="static" v-bind:anything="prop1"></span>
-</div>`,
-    script: `{
-  props: {
-    prop1: {
-      default: 'yeeah Im a prop'
-    }
-  },
-  data() {
-    return {
-      data1: 'Just normal data'
-    }
-  }
-}`
   }
 }
 

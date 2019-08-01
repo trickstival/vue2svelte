@@ -2,6 +2,7 @@
   <div class="home">
     <h1>Vue2Svelte demo</h1>
     <section class="editors-grid">
+      <presets v-model="preset" />
       <div>
         Template
         <editor
@@ -25,21 +26,20 @@
         </pre>
       </div>
     </section>
-
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Editor from '@/components/Editor.vue'
-import presets from '../utils/presets'
+import Presets from '../components/Presets.vue'
 import Compiler from '../../../src'
-// import { throttle } from 'lodash-es'
-import prettier from 'prettier/standalone'
+// import prettier from 'prettier/standalone'
 
 @Component({
   components: {
-    Editor
+    Editor,
+    Presets
   }
   // TODO: find a way to run prettier with svelte in the browser
   // watch: {
@@ -61,10 +61,16 @@ import prettier from 'prettier/standalone'
   // }
 })
 export default class Home extends Vue {
-  private preset = presets.default
+  private preset = { script: '', template: '' }
   // private formattedSvelteCode = ''
   get svelteCode () {
+    if (!this.preset.script) {
+      return
+    }
+    // TODO: this should not affect the script code.
+    // I have to find a regex that only matches the json keys
     const jsonString = `(${this.preset.script})`.replace(/'/g, '"')
+
     // eslint-disable-next-line
     const component = eval(jsonString)
     component.template = this.preset.template
@@ -85,7 +91,8 @@ pre.result-container {
 }
 .editors-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-columns: .2fr 1fr 1fr;
   height: 80%;
 }
 </style>
