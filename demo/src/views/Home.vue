@@ -65,7 +65,7 @@ export default class Home extends Vue {
   // private formattedSvelteCode = ''
   get svelteCode () {
     const jsonString = `(${this.preset.script})`.replace(/'/g, '"')
-    // eslint-disable
+    // eslint-disable-next-line
     const component = eval(jsonString)
     component.template = this.preset.template
 
