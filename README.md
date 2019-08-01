@@ -27,7 +27,7 @@ Compiler Roadmap:
 - [ ] v-for statements
 - [ ] v-once statements
 - [ ] v-model support
-- [ ] single attr v-bind support
+- [x] v-bind:prop / :prop support
 - [ ] v-bind="obj" support
 - [ ] Methods
 - [ ] Computed properties
