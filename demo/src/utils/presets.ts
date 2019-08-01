@@ -42,7 +42,7 @@ const presets: Record<string, Preset> = {
   },
   'print data': {
     template: `<div>
-    <span>Printing prop: {{ prop1 }} </span>
+    <span>Printing prop: {{ prop1 }}</span>
 </div>`,
     script: `{
       props: {
