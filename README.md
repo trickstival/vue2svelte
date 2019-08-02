@@ -24,7 +24,7 @@ Compiler Roadmap:
 - [x] Simple properties declaration
 - [x] v-if statements
 - [x] v-else and v-else-if statements
-- [ ] v-for statements
+- [x] v-for statements
 - [ ] v-once statements
 - [ ] v-model support
 - [x] v-bind:prop / :prop support

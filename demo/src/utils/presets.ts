@@ -42,15 +42,15 @@ const presets: Record<string, Preset> = {
   },
   'v-for': {
     template: `<div>
-    <h2 v-for="nameObj in list">{{ nameObj.name }}</h2>
+    <h2 v-for="({ name }, idx) in list">{{ idx }} {{ name }}</h2>
 </div>`,
     script: `{
-      data () {
-        return {
-          list: [{ name: 'Bob' }, { name: 'Dylan' }]
-        }
-      }
-    }`
+  data () {
+    return {
+      list: [{ name: 'Bob' }, { name: 'Dylan' }]
+    }
+  }
+}`
   },
   'print data': {
     template: `<div>

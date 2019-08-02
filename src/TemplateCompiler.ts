@@ -52,7 +52,16 @@ export default class TemplateCompiler {
                 }
                 return `{:else} ${block}`
             }).join('')
-            return `{#if ${node.if}}${template}${elsesTemplate}{/if}`
+            template = `{#if ${node.if}}${template}${elsesTemplate}{/if}`
+        }
+        // Compile for
+        if (node.for) {
+            // I think Svelte only supports one iterator
+            let alias = node.alias
+            if (node.iterator1) {
+                alias += `, ${node.iterator1}`
+            }
+            template = `{#each ${node.for} as ${alias}}${template}{/each}`
         }
         return template
     }
