@@ -39,6 +39,32 @@ Compiler Roadmap:
 
 ...
 
+## Usage
+
+```js
+import Vue2Svelte from 'vue2svelte'
+
+const VueComponent = {
+    template: `<div><span v-for="item in list">{{ item }}</span></div>`,
+    props: {
+        list: {
+            default: ['item 1', 'item 2']
+        }
+    },
+    data () {
+        return {
+            hello: 'world'
+        }
+    }
+}
+
+const SvelteComponent = new Vue2Svelte(VueComponent)
+
+console.log(SvelteComponent.compile())
+// Output: <script>export let list=["item 1","item 2"];let hello="world";</script><div>{#each list as item}<span>{item}</span>{/each}</div>
+
+```
+
 Currently it can compile simple pure components with props and data.
 
 This project is a little bit complex, so if you can help please do it!
