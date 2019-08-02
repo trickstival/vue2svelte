@@ -31,11 +31,11 @@ export default class SvelteComponent {
     }
     public getCode () {
         const propsCode = this.props
-            .map((prop) => `export let ${prop.name} = '${prop.default}';`)
+            .map((prop) => `export let ${prop.name}=${JSON.stringify(prop.default)};`)
             .join('\n')
 
         const dataCode = this.data
-            .map((data) => `let ${data.name} = '${data.initialValue}';`)
+            .map((data) => `let ${data.name}=${JSON.stringify(data.initialValue)};`)
             .join('\n')
 
         return `<script>${propsCode}${dataCode}</script>${this.template}`

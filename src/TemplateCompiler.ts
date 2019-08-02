@@ -32,7 +32,7 @@ export default class TemplateCompiler {
         }
         return node.attrs.map((attr) => {
             // "dynamic" property is not mapped by vue-template-compiler declaration files.
-            // maybe opening an issue is the right thing to do, but I think it's moving to ts.
+            // maybe opening an issue is the right thing to do, but I think it's moving to ts anyway.
             // @ts-ignore
             if (attr.dynamic !== undefined) {
                 return `${attr.name}={${attr.value}}`
@@ -41,6 +41,8 @@ export default class TemplateCompiler {
         }).join(' ')
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
+        console.log(node)
+        // Compile ifs and elses
         if (node.if) {
             const [, ...elses] = node.ifConditions
             const elsesTemplate = elses.map((elseItem) => {

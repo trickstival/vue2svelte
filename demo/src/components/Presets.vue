@@ -1,7 +1,7 @@
 <template>
   <section class="presets">
     <h3>
-      Presets
+      Select a Preset
     </h3>
     <ul class="preset-list">
       <li

@@ -40,6 +40,18 @@ const presets: Record<string, Preset> = {
   }
 }`
   },
+  'v-for': {
+    template: `<div>
+    <h2 v-for="nameObj in list">{{ nameObj.name }}</h2>
+</div>`,
+    script: `{
+      data () {
+        return {
+          list: [{ name: 'Bob' }, { name: 'Dylan' }]
+        }
+      }
+    }`
+  },
   'print data': {
     template: `<div>
     <span>Printing prop: {{ prop1 }}</span>
