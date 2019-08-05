@@ -4,8 +4,8 @@ import SvelteComponent, { SvelteData, SvelteProp } from './SvelteComponent'
 import TemplateCompiler from './TemplateCompiler'
 
 export class ComponentCompiler<T extends ComponentOptions<Vue>> {
-    private vm: T
-    private svelteComponent: SvelteComponent
+    public vm: T
+    public svelteComponent: SvelteComponent
     constructor (vm: T) {
         this.vm = vm
         this.svelteComponent = new SvelteComponent()

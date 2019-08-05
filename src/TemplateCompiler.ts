@@ -23,7 +23,7 @@ export default class TemplateCompiler {
         this.compiledVueTemplate = Compiler.compile(this.rawTemplate, options)
     }
     public compile (ast = this.compiledVueTemplate.ast) {
-        const children = ast.children.map((astChild) => this.compileNode(astChild)).join('\n')
+        const children = ast.children.map((astChild) => this.compileNode(astChild)).join('')
         return `<${ast.tag}>${children}</${ast.tag}>`
     }
     private compileAttrs (node: Compiler.ASTElement): string {
@@ -41,7 +41,6 @@ export default class TemplateCompiler {
         }).join(' ')
     }
     private compileSurroundings (node: Compiler.ASTElement, template: string) {
-        console.log(node)
         // Compile ifs and elses
         if (node.if) {
             const [, ...elses] = node.ifConditions
