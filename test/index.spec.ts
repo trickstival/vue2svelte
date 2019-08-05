@@ -8,7 +8,7 @@ const compile = (options: ComponentOptions<Vue>) => new ComponentCompiler(option
 describe('The Compiler', () => {
     it('Static html rendering', () => {
         const myComponent: ComponentOptions<Vue> = {
-            template: '<mark>I am just <h2>STATIC</h2></mark>'
+            template: '<mark>I am just \n<h2>STATIC</h2></mark>'
         }
 
         const result = compile(myComponent)
@@ -17,7 +17,7 @@ describe('The Compiler', () => {
     })
     it('Simple v-if and props compiling', () => {
         const myComponent: ComponentOptions<Vue> = {
-            template: `<h1><span v-if="heyProp === 'ai'">sup {{ heyProp }}</span> plp {{ heyProp }} {{ hey }}</h1>`,
+            template: `<h1><span v-if="heyProp==='ai'">sup {{ heyProp }}</span> plp {{ heyProp }} {{ hey }}</h1>`,
             props: {
                 heyProp: {
                     default: 'Im a prop'
@@ -25,6 +25,7 @@ describe('The Compiler', () => {
             },
             data () {
                 return {
+                    
                     hey: 'Im hey data'
                 }
             }
